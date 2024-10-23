@@ -1,0 +1,49 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+	<nav>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+	</nav>
+</header>
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		z-index: 100;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.2em;
+		width: 100%;
+		text-align: center;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+		color: rgb(var(--black));
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1em 0;
+	}
+	nav a {
+		padding: 0.5em 0.8em;
+		color: var(--black);
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+	nav a:hover {
+		background: rgba(var(--gray-light), 0.5);
+		color: var(--accent);
+	}
+	nav a.active {
+		background: var(--accent);
+		color: white;
+	}
+</style>
