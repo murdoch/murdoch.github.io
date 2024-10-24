@@ -145,6 +145,7 @@ pre::selection {
 }
 
 .header {
+  color: var(--font-color);
   margin-bottom: 4rem;
   text-align: center;
 }
@@ -159,7 +160,7 @@ pre::selection {
   text-transform: lowercase;
 }
 
-.site-name em {
+.first-name {
   background: inerhit;
   color: var(--header-font-color);
   display: block;
@@ -167,17 +168,14 @@ pre::selection {
   font-style: italic;
 }
 
-.site-name span {
-  color: var(--font-color);
+.last-name {
+  display: block;
   font-variant: small-caps;
 }
 
-.site-name:hover em,
-.site-name:hover span,
-.site-name:focus em,
-.site-name:focus span,
-.site-name:active em,
-.site-name:active span {
+.site-name:hover,
+.site-name:focus,
+.site-name:active {
   color: var(--header-font-color-hover);
 }
 
