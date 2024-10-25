@@ -143,6 +143,7 @@ pre::selection {
 }
 
 .header {
+  color: var(--font-color);
   margin-bottom: 4rem;
 }
 
@@ -157,8 +158,6 @@ pre::selection {
 }
 
 .first-name {
-  background: inerhit;
-  color: var(--header-font-color);
   display: block;
   font-size: 2rem;
   font-style: italic;
@@ -194,7 +193,8 @@ img {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   text-wrap: pretty;
 }
 
@@ -214,8 +214,8 @@ h4 {
 }
 
 p {
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: 1.5rem;
+  line-height: 1.4;
   margin-bottom: 2rem;
 }
 
@@ -252,7 +252,7 @@ pre {
   display: grid;
   grid-template-columns: var(--grid-cols);
   grid-gap: 2rem;
-  row-gap: 2rem;
+  /* row-gap: 4rem; */
 }
 
 .article-link {
@@ -275,8 +275,14 @@ pre {
 }
 
 .grid h2 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
+}
+
+.grid p {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 2rem;
 }
 
 .grid picture {

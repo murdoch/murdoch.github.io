@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'Stephen Murdoch';
 export const SITE_DESCRIPTION = 'I work as a programmer in the travel industry and live in Largs, Scotland. My interests include video games, music, wildlife, sports, and travelling.';
-export const SITE_IMAGE = '/blog-placeholder-1.jpg';
+export const SITE_IMAGE = '/blog-placeholder-about.jpg';
