@@ -1,8 +1,8 @@
 ---
-title: 'Second post'
+title: 'First post'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 15 2022'
-heroImage: '/blog-placeholder-4.jpg'
+pubDate: 'Jul 08 2022'
+heroImage: './blog-placeholder-1.jpg'
 heroAlt: 'an image'
 ---
 
