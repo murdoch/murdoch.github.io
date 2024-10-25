@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -8,6 +9,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, heroAlt } = Astro.props;
+
 ---
 
 <html lang="en">
@@ -20,21 +22,17 @@ const { title, description, pubDate, updatedDate, heroImage, heroAlt } = Astro.p
 
 		<main>
 			<article class="post">
-				<header>
+				<header class="center">
 					<h1>{title}</h1>
 					<FormattedDate date={pubDate} />
-					{
-						updatedDate && (
-							<div class="last-updated-on">
-								Last updated on <FormattedDate date={updatedDate} />
-							</div>
-						)
-					}
 				</header>
 
-				<figure class="figure">
-					<img width={800} height={450} src={heroImage} alt={heroAlt} />
-				</figure>
+				<Picture
+				  src={heroImage}
+					alt={heroAlt}
+					width={800}
+					height={450}
+					formats={["avif", "webp", "jpg", "png"]} />
 
 				<div class="prose">
 					<p>
