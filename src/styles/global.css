@@ -200,7 +200,7 @@ h4 {
 
 h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 h3 {
@@ -231,11 +231,6 @@ pre {
   max-width: 100%;
   padding: 1.5rem 2rem;
   margin: 0 0 2rem;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 1s;
 }
 
 .bio {
@@ -319,4 +314,10 @@ pre {
 
 .center {
   text-align: center;
+}
+
+lite-youtube {
+  aspect-ratio: 16/9;
+  margin-bottom: 2rem;
+  max-width: 100% !important;
 }
