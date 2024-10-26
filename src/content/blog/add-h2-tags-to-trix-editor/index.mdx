@@ -1,0 +1,48 @@
+---
+title: "How to add H2 tags to the Trix editor toobar"
+description: "Trix lacks H2 tags out the box, here's how to add them"
+pubDate: "Jul 2 2024"
+heroImage: "./trix-editor.png"
+heroAlt: "Trix Editor by Basecamp"
+---
+
+import { Picture } from "astro:assets";
+import trixToolbar from "./trix-toolbar.png";
+
+[Trix](https://trix-editor.org/) is a rich text editor from [37signals](https://37signals.com/), aka [Basecamp](https://basecamp.com/), which is built-in to [ActionText](https://guides.rubyonrails.org/action_text_overview.html), making it easier to add rich text content to [Rails](https://rubyonrails.org/) apps.
+
+The toolbar at the top of the editor has a button for adding header tags. By default it spits out H1 tags, but I already add an H1 elsewhere in my markup, and would prefer if the button added an H2 tag instead.
+
+<figure class="figure">
+  <Picture
+    src={trixToolbar}
+    alt="Trix editor toolbar"
+    width={800}
+    height={450}
+    formats={["avif", "webp", "jpg", "png"]} />
+
+    <figcaption>Trix editor toolbar</figcaption>
+</figure>
+
+I took a few wrong turns looking for the best way to do this, and in the end it was surprisingly simple. All I needed was the following javascript:
+
+```javascript
+Trix.config.blockAttributes.heading1.tagName = "h2"
+```
+
+Tada. That was easy.  Now when I hit the heading button, it inserts an H2 tag into my document, rather than an H1.
+
+## Where should I put the javascript?
+
+You _could_ put it in `app/javascript/application.js`, but I actually created a separate file named `admin.js`, which I only load for logged in users. This helps reduce the amount of javascript regular non-admin users have to download when they hit the site.
+
+My `admin.js` file looks like this:
+
+```javascript
+import "trix"
+import "@rails/actiontext"
+
+Trix.config.blockAttributes.heading1.tagName = "h2"
+```
+
+That's about it for now.

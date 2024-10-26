@@ -12,30 +12,32 @@
 @media(prefers-color-scheme: light) {
   :root {
     --body-background-color: white;
-    --youtube-disclaimer-background-color: #fafafa;
     --font-color: black;
     --font-color-alt: gray;
-    --font-color-pre-tag: black;
     --post-link-color: #0185FF;
     --trix-button-background-color: white;
     --post-box-shadow: none;
+    --inline-pre-tag-font-color: #24292e;
+    --inline-pre-tag-background-color: #e9e9e9;
     --pre-tag-selection-text: white;
     --pre-tag-selection-background: black;
+    --blockquote-border-color: #e9e9e9;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root  {
     --body-background-color: black;
-    --youtube-disclaimer-background-color: #040404;
     --font-color: white;
     --font-color-alt: #b0b0b0;
-    --font-color-pre-tag: black;
     --post-link-color: #0185FF;
     --trix-button-background-color: white;
     --post-box-shadow: none;
+    --inline-pre-tag-font-color: #e9e9e9;
+    --inline-pre-tag-background-color: #24292e;
     --pre-tag-selection-text: white;
     --pre-tag-selection-background: black;
+    --blockquote-border-color: #1a1a1a;
   }
 }
 
@@ -110,6 +112,7 @@ label {
 }
 
 img,
+figure,
 picture {
   max-width: 100%;
   display: block;
@@ -140,6 +143,15 @@ ol[role='list'] {
 pre::selection {
   background-color: var(--pre-tag-selection-background);
   color: var(--pre-tag-selection-text);
+}
+
+p > code {
+  background: var(--inline-pre-tag-background-color);
+  border-radius: 3px;
+  color: var(--inline-pre-tag-font-color);
+  display: inline-block;
+  font-size: 75%;
+  padding: 0 0.5rem;
 }
 
 .header {
@@ -179,6 +191,7 @@ main {
   max-width: 1536px;
 }
 
+figure,
 picture {
   max-width: 100%;
   margin-bottom: 2rem;
@@ -226,11 +239,30 @@ time {
 }
 
 pre {
-  color: var(--font-color-pre-tag);
   font-family: var(--font-mono);
   max-width: 100%;
   padding: 1.5rem 2rem;
   margin: 0 0 2rem;
+}
+
+lite-youtube {
+  aspect-ratio: 16/9;
+  margin-bottom: 2rem;
+  max-width: 100% !important;
+}
+
+blockquote {
+  border: 0 solid var(--blockquote-border-color);
+  border-left-width: 0.3em;
+  margin-left: 0.3rem;
+  padding-left: 1rem;
+  color: var(--font-color-alt);
+  font-style: italic;
+}
+
+blockquote cite {
+  display: block;
+  font-style: normal;
 }
 
 .bio {
@@ -247,7 +279,6 @@ pre {
   display: grid;
   grid-template-columns: var(--grid-cols);
   grid-gap: 2rem;
-  /* row-gap: 4rem; */
 }
 
 .article-link {
@@ -308,16 +339,21 @@ pre {
   color: var(--post-link-color);
 }
 
+.post figure picture {
+  margin-bottom: 0.5rem;
+}
+
+.post figcaption {
+  color: var(--font-color-alt);
+  font-size: 1.25rem;
+  font-style: italic;
+  text-align: center;
+}
+
 .hidden {
   display: none;
 }
 
 .center {
   text-align: center;
-}
-
-lite-youtube {
-  aspect-ratio: 16/9;
-  margin-bottom: 2rem;
-  max-width: 100% !important;
 }
