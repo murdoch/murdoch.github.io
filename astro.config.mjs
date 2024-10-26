@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-	site: 'https://murdo.ch',
+	site: 'https://murdoch.github.io',
 	integrations: [
 		embeds(),
 		mdx(),
