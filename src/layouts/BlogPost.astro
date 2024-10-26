@@ -6,15 +6,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'posts'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroAlt } = Astro.props;
+const { title, description, pubDate, heroImage, heroAlt } = Astro.props;
 
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
+		<BaseHead title={title} description={description} image={heroImage.src} />
 	</head>
 
 	<body>
@@ -34,13 +34,11 @@ const { title, description, pubDate, updatedDate, heroImage, heroAlt } = Astro.p
 					height={450}
 					formats={["avif", "webp", "jpg", "png"]} />
 
-				<div class="prose">
-					<p>
-						<strong>{description}</strong>
-					</p>
+				<p>
+					<strong>{description}</strong>
+				</p>
 
-					<slot />
-				</div>
+				<slot />
 			</article>
 		</main>
 		<Footer />
