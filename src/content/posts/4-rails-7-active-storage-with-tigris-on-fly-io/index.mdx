@@ -1,0 +1,168 @@
+---
+title: "Rails 7 Active Storage with Tigris on Fly.io"
+description: "It's so easy to use Tigris as an ActiveStorage backend"
+pubDate: "May 30 2024"
+heroImage: "./panthera-tigris.jpeg"
+heroAlt: "Ruby on Rails"
+published: true
+---
+
+This blog is built with [Astro.js](https://astro.build/) but most of my other personal websites are built with [Rails](https://rubyonrails.org/).
+
+When working with rails, I like to use [ActiveStorage](https://edgeguides.rubyonrails.org/active_storage_overview.html) for file uploads, and [ActionText](https://edgeguides.rubyonrails.org/action_text_overview.html) to create posts with rich text content.
+The default active storage configuration file is as follows:
+
+```yaml
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+```
+
+I want my images stored in the cloud so that they don't take up space on my server.
+[Amazon S3](https://aws.amazon.com/s3/) is the obvious choice, they're fast and reliable, but their [Identity and Access Management](https://aws.amazon.com/iam/) system is complex and confusing.
+I need a simpler solution. Enter [Tigris](https://www.tigrisdata.com/).
+
+In their own words:
+
+> Tigris is a globally distributed S3-compatible object storage service that provides low latency anywhere in the world, enabling developers to store and access any amount of data for a wide range of use cases.
+
+Sounds good to me. Let's see how to use Tigris as a backend for ActiveStorage attachments on [Fly.io](https://fly.io/).
+It only took me 10 minutes to get it all working.
+
+## Step 1: Create a Tigris project
+
+Run the following command from the root of your application:
+
+```bash
+fly storage create --public
+```
+
+Fly.io will do the heavy lifting for you, and when the process is complete they will set the following ENV variables on your server:
+
+- `AWS_ACCESS_KEY_ID`
+- `AWS_ENDPOINT_URL_S3`
+- `AWS_REGION`
+- `AWS_SECRET_ACCESS_KEY`
+- `BUCKET_NAME`
+
+## Step 2: Create a Tigris adapter for ActiveStorage
+
+Add the following code to the ActiveStorage configuration file found at `config/storage.yml`:
+
+```yaml
+tigris:
+  service: S3
+  endpoint: <%= ENV["AWS_ENDPOINT_URL_S3"] %>
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  bucket: <%= ENV["BUCKET_NAME"] %>
+  region: <%= ENV["AWS_REGION"] %>
+```
+
+## Step 3: Tell Rails to use Tigris in production
+
+Update the ActiveStorage service in `config/environments/production.rb` to the following:
+
+```ruby
+config.active_storage.service = :tigris
+```
+
+## Step 4: Add the S3 gem to your Gemfile
+
+We need to install the [aws-sdk-s3](https://rubygems.org/gems/aws-sdk-s3) gem so add the following to your gemfile:
+
+```ruby
+group :production do
+  gem "aws-sdk-s3", require: false
+end
+```
+
+Don't forget to run `bundle install`
+
+```bash
+bundle install
+git add .
+git commit -m 'Panthera Tigris'
+```
+
+If you're using ActionText then you will need to configure CORS on your Tigris bucket so that direct uploads via the Trix editor will work.
+
+## Step 5:  Install the AWS CLI
+
+If you already have AWS CLI installed and configured, then you might want to back-up your existing settings, found at `~/.aws` on MacOS, before doing the following.
+
+I'm on a Mac so I installed the AWS CLI using homebrew, and then I configured it to use the ENV variables from step 1:
+
+```bash
+brew install awscli
+aws configure
+```
+
+Note that I had to SSH into my server to get the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as the values displayed in the Fly.io UI are merely digests.
+
+When finished you should have the following in `~/.aws/config`
+
+```bash
+[default]
+region = auto
+output = json
+```
+
+And you should have the following in `~/.aws/credentials`
+
+```bash
+[default]
+aws_access_key_id = your_aws_access_key_id
+aws_secret_access_key = your_aws_secret_access_key
+```
+
+## Step 6 - Create a CORS file
+
+We need to create a json file containing the following CORS rules if we want direct uploads to work via the Trix editor:
+
+```json
+{
+  "CORSRules" : [
+    {
+      "AllowedHeaders":["*"],
+      "AllowedMethods":["PUT", "POST", "DELETE"],
+      "AllowedOrigins":["https://your_domain.com"],
+      "MaxAgeSeconds":3000
+    },
+    {
+      "AllowedHeaders":["*"],
+      "AllowedMethods":["GET"],
+      "AllowedOrigins":["*"],
+      "MaxAgeSeconds":3000
+    }
+  ]
+}
+```
+
+Save the file as `cors.json` somewhere on your local machine, and make sure you put your own domain name in there where it says `your_domain.com`.
+
+You can now register your cors file with your Tigris project by running the following command:
+
+```bash
+aws s3api put-bucket-cors --endpoint-url https://fly.storage.tigris.dev --bucket put_your_bucket_name_here --cors-configuration file:///path/to/cors.json
+```
+
+Make sure to use your own bucket name when running the above command.
+
+## Step 7 - Deploy your code
+
+We just need to deploy our code now:
+
+```bash
+fly deploy
+```
+
+And that's it. ActiveStorage will now use Tigris, and the CORS rules we added will allow direct uploads via the Trix editor if you're using ActionText.
+
+Remember you can skip the CORS stuff from steps 5 and 6 if you're not using direct uploads or Trix.
+
+Good luck.

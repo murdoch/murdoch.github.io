@@ -1,0 +1,46 @@
+---
+title: "Rails 7.2.beta1 has been released"
+description: "The next release of rails comes with some neat benefits"
+pubDate: "Jun 1 2024"
+heroImage: "./rails.png"
+heroAlt: "Ruby on Rails"
+published: true
+---
+
+Rails [7.2.beta1](https://github.com/rails/rails/tree/v7.2.0.beta1) dropped last night, around the same time as [Ruby 3.3.2](https://www.ruby-lang.org/en/news/2024/05/30/ruby-3-3-2-released/), so I took the time to upgrade both. Here are my top three features of the forthcoming Rails 7.2 release:
+
+## The Dockerfile now includes jemalloc by default
+
+Anyone dealing with memory bloat in rails app has likely been advised to try installing [jemalloc](https://github.com/jemalloc/jemalloc):
+
+> jemalloc is a general purpose malloc(3) implementation that emphasizes fragmentation avoidance and scalable concurrency support.
+
+Having this as a default in rails dockerfiles gives me confidence that it's the right way to go.
+It's no substitute for tracking down the actual source of memory leaks of course, but I saw a decent drop in my memory use after upgrading.
+
+RAM use went from well over 550 MB, to around 350 MB. That's pretty cool. I know I can do more to get the number down, but this is a good start.
+
+## YJIT is enabled by default
+
+Shopify's [YJIT](https://github.com/Shopify/yjit) was merged to Ruby [a while back](https://shopify.engineering/ruby-yjit-is-production-ready), and is now enabled by default for anyone running Ruby 3.3+ on Rails 7.2.
+If it makes ruby apps faster, then I'll take it.
+
+## Brakeman and Rubocop in the Gemfile
+
+New rails 7.2 apps now come with both [Brakeman](https://github.com/presidentbeef/brakeman) and [Rubocop](https://github.com/rails/rubocop-rails-omakase) in the Gemfile:
+
+```ruby
+group :development, :test do
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
+end
+```
+
+Great. Security analysis and code linting. No more arguing with myself over either of these things.
+
+There are a ton of other exciting improvements with this update, and you can read the release notes [here](https://edgeguides.rubyonrails.org/7_2_release_notes.html).
+
+Amen.

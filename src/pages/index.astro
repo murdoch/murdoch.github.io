@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../consts';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('posts', ({ data }) => { return data.published === true; })).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -30,7 +30,7 @@ const posts = (await getCollection('blog')).sort(
 				{
 					posts.map((post) => (
 						<article>
-							<a href={`/blog/${post.slug}/`} class="article-link">
+							<a href={`/posts/${post.slug}`} class="article-link">
 								<Picture
 									src={post.data.heroImage}
 									alt={post.data.heroAlt}

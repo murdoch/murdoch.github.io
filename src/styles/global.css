@@ -350,6 +350,11 @@ blockquote cite {
   text-align: center;
 }
 
+.post ul,
+.post ol {
+  margin-bottom: 2rem;
+}
+
 .hidden {
   display: none;
 }
