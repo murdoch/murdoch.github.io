@@ -2,7 +2,7 @@
 
 This is the code for my blog, which can be found at https://murdo.ch
 
-The site is built with astro. Fee free to clone this repo. You can get it running with:
+The site is built with astro. Feel free to clone this repo. You can get it running with:
 
 ```sh
 npm install
