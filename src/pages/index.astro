@@ -30,7 +30,7 @@ const posts = (await getCollection('posts', ({ data }) => { return data.publishe
 				{
 					posts.map((post) => (
 						<article>
-							<a href={`/posts/${post.slug}`} class="article-link">
+							<a href={`/posts/${post.slug}/`} class="article-link">
 								<Picture
 									src={post.data.heroImage}
 									alt={post.data.heroAlt}
