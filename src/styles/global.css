@@ -1,5 +1,8 @@
 :root {
   color-scheme: light dark;
+  --body-padding-vertical: 4rem;
+  --grid-cols: 1fr;
+  --body-padding-horizontal: 1rem;
   --header-font-color-alt: darkgray;
   --header-font-color-hover: gray;
   --font-serif: "Times New Roman", Times, ui-serif, Georgia, Cambria, serif;
@@ -41,27 +44,20 @@
   }
 }
 
-@media (min-width: 640px) {
-  :root {
-    --grid-cols: 1fr;
-  }
-}
+@media (min-width: 640px) { }
 
 @media (min-width: 768px) { }
 
 @media (min-width: 1024px) {
   :root {
     --grid-cols: 1fr 1fr;
+    --body-padding-horizontal: 2rem;
   }
 }
 
-@media (min-width: 1280px) {
-  :root { }
-}
+@media (min-width: 1280px) { }
 
-@media (min-width: 1536px) {
-  :root { }
-}
+@media (min-width: 1536px) { }
 
 *,
 *::after,
@@ -96,7 +92,7 @@ body {
   font-size: var(--font-size-default);
   line-height: 1.5;
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding: var(--body-padding-vertical) var(--body-padding-horizontal);
   -webkit-font-smoothing: antialiased;
   word-break: break-word;
 }
