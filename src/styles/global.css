@@ -44,20 +44,12 @@
   }
 }
 
-@media (min-width: 640px) { }
-
-@media (min-width: 768px) { }
-
 @media (min-width: 1024px) {
   :root {
     --grid-cols: 1fr 1fr;
     --body-padding-horizontal: 2rem;
   }
 }
-
-@media (min-width: 1280px) { }
-
-@media (min-width: 1536px) { }
 
 *,
 *::after,
