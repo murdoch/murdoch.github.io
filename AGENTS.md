@@ -12,9 +12,9 @@ Static personal blog at `https://www.murdo.ch`, built with Astro and deployed to
 - MDX for posts (`@astrojs/mdx`)
 - `@astrojs/sitemap`, `@astrojs/rss`
 - `astro-embed` for media embeds
-- `sharp` for image optimisation — currently pinned to `^0.35.0-rc.5` so it has prebuilt binaries for Node 25. Bump to `^0.35.0` when stable ships.
+- `sharp` for image optimisation, currently pinned to `^0.35.0-rc.5` so it has prebuilt binaries for Node 25. Bump to `^0.35.0` when stable ships.
 
-Both CI and local dev run Node 25. Astro 6's documented minimum is Node 22.12, but the Sharp RC pin above is specifically chosen for Node 25 prebuilt binary support — if you bump or downgrade Node, revisit the Sharp pin.
+Both CI and local dev run Node 25. Astro 6's documented minimum is Node 22.12, but the Sharp RC pin above is specifically chosen for Node 25 prebuilt binary support. If you bump or downgrade Node, revisit the Sharp pin.
 
 ## Commands
 
@@ -61,15 +61,15 @@ src/
 
 ## Gotchas
 
-- **`© 1978 AD` in `src/components/Footer.astro` is intentional** — Stephen's year of birth, not a placeholder. Don't "fix" it.
-- **`astro-embed` transforms bare URLs in MDX automatically.** A YouTube URL on its own line becomes a `<YouTube>` component (lite-youtube-embed facade — no cookies until the user clicks play). Don't assume the dependency is unused without grepping MDX for bare URLs.
-- **URLs are slug-derived from directory names.** Migration from Astro 4's legacy collections to the Content Layer API preserved this — `post.id` for an `index.mdx` file equals the parent directory name.
+- **`© 1978 AD` in `src/components/Footer.astro` is intentional.** It's Stephen's year of birth, not a placeholder. Don't "fix" it.
+- **`astro-embed` transforms bare URLs in MDX automatically.** A YouTube URL on its own line becomes a `<YouTube>` component (lite-youtube-embed facade, no cookies until the user clicks play). Don't assume the dependency is unused without grepping MDX for bare URLs.
+- **URLs are slug-derived from directory names.** Migration from Astro 4's legacy collections to the Content Layer API preserved this. `post.id` for an `index.mdx` file equals the parent directory name.
 - The RSS feed lives at `/rss.xml`. Autodiscovery is wired up in `BaseHead.astro`.
 
 ## Where to look
 
-- [`README.md`](./README.md) — basic setup
-- [`ROADMAP.md`](./ROADMAP.md) — outstanding papercuts, planned improvements, and the writing backlog
+- [`README.md`](./README.md): basic setup
+- [`ROADMAP.md`](./ROADMAP.md): outstanding papercuts, planned improvements, and the writing backlog
 
 ## Working with this repo
 
