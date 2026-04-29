@@ -26,4 +26,7 @@ Bigger lifts. Each is a feature, not a cleanup.
 
 Post ideas, half-drafts, things to come back to.
 
--
+- **ForcePull** ([forcepull.com](https://forcepull.com)): what it is, why I built it, what it's for
+- **Moringa Bazinga** ([moringa-bazinga.com](https://moringa-bazinga.com)): what it is, why I built it, what it's for
+- **Cyberpunk 2077, the best game I've ever played**: how it set the bar so high it put me off playing anything else for a while
+- **(Maybe)** A meta-post on how AI has changed the way I write code, given two years of silence on the blog and a much higher output overall
