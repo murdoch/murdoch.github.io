@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../consts';
 import { getCollection } from 'astro:content';
 
@@ -28,18 +29,28 @@ const posts = (await getCollection('posts', ({ data }) => { return data.publishe
 
       <div class="grid">
         {
-          posts.map((post) => (
-            <article>
+          posts.map((post, index) => (
+            <article class={index === 0 ? 'is-featured' : ''}>
               <a href={`/posts/${post.id}/`} class="article-link">
-                <Picture
-                  src={post.data.heroImage}
-                  alt={post.data.heroAlt}
-                  width={800}
-                  height={450}
-                  formats={["avif", "webp", "jpg", "png"]} />
+                <div class="card-media">
+                  <Picture
+                    src={post.data.heroImage}
+                    alt={post.data.heroAlt}
+                    width={800}
+                    height={450}
+                    formats={["avif", "webp", "jpg", "png"]} />
+                  {index === 0 && <span class="card-badge">Latest</span>}
+                </div>
 
-                <h2>{post.data.title}</h2>
-                <p>{post.data.description}</p>
+                <div class="card-body">
+                  <FormattedDate date={post.data.pubDate} />
+                  <h2>{post.data.title}</h2>
+                  <p>{post.data.description}</p>
+                  <span class="card-cta">
+                    Read post
+                    <span class="card-cta-arrow" aria-hidden="true">→</span>
+                  </span>
+                </div>
               </a>
             </article>
           ))
