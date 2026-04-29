@@ -75,9 +75,9 @@
 }
 
 @property --post-prose-max {
-  syntax: "<length-percentage>";
+  syntax: "<length>";
   inherits: true;
-  initial-value: 38rem;
+  initial-value: 608px;
 }
 
 *,
