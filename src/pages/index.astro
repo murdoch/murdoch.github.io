@@ -7,46 +7,46 @@ import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('posts', ({ data }) => { return data.published === true; })).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <!doctype html>
 
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={SITE_IMAGE} />
-	</head>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={SITE_IMAGE} />
+  </head>
 
-	<body>
-		<Header />
+  <body>
+    <Header />
 
-		<main>
-			<h1 class="hidden">Stephen Murdoch</h1>
+    <main>
+      <h1 class="hidden">Stephen Murdoch</h1>
 
-			<p class="bio">{SITE_DESCRIPTION}</p>
+      <p class="bio">{SITE_DESCRIPTION}</p>
 
-			<div class="grid">
-				{
-					posts.map((post) => (
-						<article>
-							<a href={`/posts/${post.id}/`} class="article-link">
-								<Picture
-									src={post.data.heroImage}
-									alt={post.data.heroAlt}
-									width={800}
-									height={450}
-									formats={["avif", "webp", "jpg", "png"]} />
+      <div class="grid">
+        {
+          posts.map((post) => (
+            <article>
+              <a href={`/posts/${post.id}/`} class="article-link">
+                <Picture
+                  src={post.data.heroImage}
+                  alt={post.data.heroAlt}
+                  width={800}
+                  height={450}
+                  formats={["avif", "webp", "jpg", "png"]} />
 
-								<h2>{post.data.title}</h2>
-								<p>{post.data.description}</p>
-							</a>
-						</article>
-					))
-				}
-			</div>
-		</main>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </main>
 
-		<Footer />
-	</body>
+    <Footer />
+  </body>
 </html>

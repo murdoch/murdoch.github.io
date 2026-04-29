@@ -13,34 +13,34 @@ const { title, description, pubDate, heroImage, heroAlt } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} image={heroImage.src} />
-	</head>
+  <head>
+    <BaseHead title={title} description={description} image={heroImage.src} />
+  </head>
 
-	<body>
-		<Header />
+  <body>
+    <Header />
 
-		<main>
-			<article class="post">
-				<header class="center">
-					<h1>{title}</h1>
-					<FormattedDate date={pubDate} />
-				</header>
+    <main>
+      <article class="post">
+        <header class="center">
+          <h1>{title}</h1>
+          <FormattedDate date={pubDate} />
+        </header>
 
-				<Picture
-				  src={heroImage}
-					alt={heroAlt}
-					width={800}
-					height={450}
-					formats={["avif", "webp", "jpg", "png"]} />
+        <Picture
+          src={heroImage}
+          alt={heroAlt}
+          width={800}
+          height={450}
+          formats={["avif", "webp", "jpg", "png"]} />
 
-				<p>
-					<strong>{description}</strong>
-				</p>
+        <p>
+          <strong>{description}</strong>
+        </p>
 
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
 </html>
