@@ -6,12 +6,11 @@ Working notes for what to fix, what to build, and what to write next.
 
 Small, low-risk cleanups. Each is a single PR's worth of work.
 
-- [ ] Delete unused `src/components/HeaderLink.astro`
-- [ ] Delete orphaned `src/content/posts/7-elden-ring/elden-ring-age-of-stars.jpg` (~371KB, not referenced)
-- [ ] Remove empty media query blocks in `src/styles/global.css` (~lines 47–50, 58–60)
-- [ ] Decide on `astro-embed`: either use it (e.g. embed the YouTube link in the Assassin's Creed post) or drop the dependency
-- [ ] Guard `og:image` in `src/components/BaseHead.astro` so it doesn't render an invalid URL when `image` is undefined
-- [ ] Delete redundant `src/env.d.ts` (the `tsconfig.json` `include` now covers it)
+- [x] Delete unused `src/components/HeaderLink.astro`
+- [x] Delete orphaned `src/content/posts/7-elden-ring/elden-ring-age-of-stars.jpg` (~371KB, not referenced)
+- [x] Remove empty media query blocks in `src/styles/global.css`
+- [x] Guard `og:image` in `src/components/BaseHead.astro` so it doesn't render an invalid URL when `image` is undefined
+- [x] Delete redundant `src/env.d.ts` (the `tsconfig.json` `include` now covers it)
 - [ ] Pin Sharp to `^0.35.0` (stable) once it ships — currently on `0.35.0-rc.5` for Node 25 prebuilt support
 
 ## Improvements
