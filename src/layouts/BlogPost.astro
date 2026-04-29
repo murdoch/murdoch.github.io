@@ -29,8 +29,9 @@ const ogImage = await getImage({
     <main>
       <article class="post">
         <header class="center">
+          <p class="post-kicker"><FormattedDate date={pubDate} /></p>
           <h1>{title}</h1>
-          <FormattedDate date={pubDate} />
+          <p class="post-dek">{description}</p>
         </header>
 
         <Picture
@@ -40,11 +41,9 @@ const ogImage = await getImage({
           height={450}
           formats={["avif", "webp", "jpg", "png"]} />
 
-        <p>
-          <strong>{description}</strong>
-        </p>
-
-        <slot />
+        <div class="post-body">
+          <slot />
+        </div>
       </article>
     </main>
     <Footer />
