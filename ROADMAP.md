@@ -17,12 +17,10 @@ Small, low-risk cleanups. Each is a single PR's worth of work.
 
 Bigger lifts. Each is a feature, not a cleanup.
 
-- [ ] Dark-mode toggle UI. CSS already respects `prefers-color-scheme`; needs a button and a small persistence hook.
-- [ ] Custom 404 page (`src/pages/404.astro`)
+- [x] Custom 404 page (`src/pages/404.astro`)
 - [ ] Dedicated `/about` page (homepage bio is the only spot today)
 - [ ] Tags / categories: schema field plus `/tags/[tag].astro` index
-- [ ] Reading time estimate on post cards and pages
-- [ ] Per-post `og:image` wired up so social previews use the hero image
+- [x] Per-post `og:image` wired up so social previews use the hero image (1200×630 optimised variant)
 
 ## Writing backlog
 
