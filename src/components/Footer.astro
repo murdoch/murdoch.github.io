@@ -1,7 +1,33 @@
-<footer class="footer center">
-  <p>
-    <strong>Stephen Murdoch</strong>
-    <br />
-    &copy; 1978 AD
-  </p>
+---
+import { SITE_BIRTH_YEAR, GITHUB_URL, EMAIL, SITE_LOCATION } from '../consts';
+
+interface Props {
+  chip?: string;
+  segments?: string[];
+}
+
+const {
+  chip = 'normal',
+  segments = ['stephen murdoch', SITE_LOCATION],
+} = Astro.props;
+---
+
+<footer class="statusline">
+  <div class="statusline-inner">
+    <span class="chip">{chip}</span>
+    {
+      segments.map((seg, i) => (
+        <>
+          {i > 0 && <span class="sep">·</span>}
+          <span>{seg}</span>
+        </>
+      ))
+    }
+    <span class="grow"></span>
+    <a href={GITHUB_URL}>github</a>
+    <span class="sep">·</span>
+    <a href={`mailto:${EMAIL}`}>email</a>
+    <span class="sep">·</span>
+    <span>© {SITE_BIRTH_YEAR}</span>
+  </div>
 </footer>

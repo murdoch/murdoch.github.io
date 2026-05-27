@@ -3,18 +3,35 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map((post) => ({
+  const all = (await getCollection('posts', ({ data }) => data.published === true)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+
+  return all.map((post, index) => ({
     params: { slug: post.id },
-    props: post,
+    props: {
+      post,
+      prev: all[index + 1],
+    },
   }));
 }
-type Props = CollectionEntry<'posts'>;
 
-const post = Astro.props;
+type Props = {
+  post: CollectionEntry<'posts'>;
+  prev?: CollectionEntry<'posts'>;
+};
+
+const { post, prev } = Astro.props;
 const { Content } = await render(post);
+
+const wordCount = post.body ? post.body.trim().split(/\s+/).length : 0;
+const readingMinutes = Math.max(1, Math.round(wordCount / 220));
 ---
 
-<BlogPost {...post.data}>
+<BlogPost
+  post={post}
+  prev={prev}
+  readingMinutes={readingMinutes}
+>
   <Content />
 </BlogPost>

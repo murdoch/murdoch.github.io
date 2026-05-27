@@ -6,7 +6,6 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-
 <html lang="en">
   <head>
     <BaseHead title={`Not found · ${SITE_TITLE}`} description="The page you were looking for doesn't exist." />
@@ -15,22 +14,30 @@ import { SITE_TITLE } from '../consts';
   <body>
     <Header />
 
-    <main>
-      <article class="post center">
-        <header>
-          <h1>Not found</h1>
-        </header>
+    <main class="page">
+      <section class="hero">
+        <div class="prompt">stephen-murdoch:~$ cat 404</div>
+        <h1>404<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="sub">no such file or directory</p>
+      </section>
 
-        <p>
-          This page doesn't exist, or it used to and doesn't anymore.
-        </p>
-
-        <p>
-          <a href="/">Back to the homepage</a>
-        </p>
-      </article>
+      <section>
+        <p class="s-label">try<span class="rule"></span></p>
+        <ul class="proj">
+          <li>
+            <a class="name" href="/">home</a>
+            <span class="desc">back to the index.</span>
+            <span class="meta">ok</span>
+          </li>
+          <li>
+            <a class="name" href="/#writing">writing</a>
+            <span class="desc">all posts.</span>
+            <span class="meta">ok</span>
+          </li>
+        </ul>
+      </section>
     </main>
 
-    <Footer />
+    <Footer chip="404" segments={['page not found']} />
   </body>
 </html>

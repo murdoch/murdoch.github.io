@@ -4,11 +4,15 @@ import { Picture, getImage } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 
-type Props = CollectionEntry<'posts'>['data'];
+interface Props {
+  post: CollectionEntry<'posts'>;
+  prev?: CollectionEntry<'posts'>;
+  readingMinutes: number;
+}
 
-const { title, description, pubDate, heroImage, heroAlt } = Astro.props;
+const { post, prev, readingMinutes } = Astro.props;
+const { title, description, pubDate, heroImage, heroAlt } = post.data;
 
 const ogImage = await getImage({
   src: heroImage,
@@ -16,36 +20,81 @@ const ogImage = await getImage({
   height: 630,
   format: 'jpg',
 });
+
+const fileName = `${post.id}.mdx`;
+const longDate = pubDate.toLocaleDateString('en-GB', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const imageSrc =
+  typeof heroImage === 'string' ? heroImage : (heroImage as { src?: string })?.src ?? '';
+const imageFile = imageSrc.split('/').pop()?.split('?')[0] ?? '';
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={ogImage.src} />
+    <BaseHead title={`${title} · Stephen Murdoch`} description={description} image={ogImage.src} />
   </head>
 
   <body>
-    <Header />
+    <Header crumbs={[{ label: '~', href: '/' }, { label: 'posts' }]} />
 
-    <main>
-      <article class="post">
-        <header class="center">
-          <p class="post-kicker"><FormattedDate date={pubDate} /></p>
-          <h1>{title}</h1>
-          <p class="post-dek">{description}</p>
-        </header>
+    <main class="page">
+      <nav class="crumb">
+        <a href="/">~</a><span class="slash">/</span><a href="/#writing">posts</a><span class="slash">/</span><span class="file">{fileName}</span>
+      </nav>
 
+      <header class="post-header">
+        <h1>{title}</h1>
+        <p class="lede">{description}</p>
+        <p class="meta">
+          <span>{longDate}</span>
+          <span class="sep">·</span>
+          <span>~{readingMinutes} min read</span>
+          <span class="sep">·</span>
+          <span>stephen murdoch</span>
+        </p>
+      </header>
+
+      <figure class="cover">
         <Picture
           src={heroImage}
           alt={heroAlt}
-          width={800}
-          height={450}
-          formats={["avif", "webp", "jpg", "png"]} />
+          width={1200}
+          height={675}
+          formats={['avif', 'webp', 'jpg', 'png']}
+        />
+        <figcaption>
+          <span>cover</span>
+          <span>{imageFile}</span>
+        </figcaption>
+      </figure>
 
-        <div class="post-body">
-          <slot />
-        </div>
+      <article class="body">
+        <slot />
       </article>
+
+      <nav class="pager" aria-label="post navigation">
+        {
+          prev ? (
+            <a href={`/posts/${prev.id}/`} class="prev">
+              <div class="lbl">← prev</div>
+              <div class="t">{prev.data.title}</div>
+            </a>
+          ) : (
+            <span class="pager-spacer" aria-hidden="true"></span>
+          )
+        }
+        <a href="/#writing" class="next">
+          <div class="lbl">index →</div>
+          <div class="t">back to all writing</div>
+        </a>
+      </nav>
     </main>
-    <Footer />
+
+    <Footer chip="read" segments={[fileName, `~${readingMinutes} min`]} />
   </body>
 </html>

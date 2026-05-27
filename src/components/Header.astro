@@ -1,3 +1,30 @@
-<header class="header center">
-  <a href="/" class="site-name">Stephen Murdoch</a>
+---
+type Crumb = { label: string; href?: string };
+
+interface Props {
+  crumbs?: Crumb[];
+}
+
+const { crumbs = [{ label: '~' }] } = Astro.props;
+---
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="dot" aria-hidden="true"></span>
+    <a href="/">murdo.ch</a>
+    {
+      crumbs.map((c) => (
+        <>
+          <span class="sep">/</span>
+          {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+        </>
+      ))
+    }
+    <span class="grow"></span>
+    <a href="/#writing">writing</a>
+    <span class="sep">·</span>
+    <a href="/#now">now</a>
+    <span class="sep">·</span>
+    <a href="/rss.xml">rss</a>
+  </div>
 </header>
