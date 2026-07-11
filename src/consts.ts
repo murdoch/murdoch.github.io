@@ -23,8 +23,8 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'tenderwatch.world',
-    href: 'https://tenderwatch.world',
+    name: 'landthebid.com',
+    href: 'https://landthebid.com',
     desc: 'daily email alerts when new public sector contracts match your watchlist.',
     status: 'live',
   },
