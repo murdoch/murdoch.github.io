@@ -23,6 +23,12 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'rogueprocess.tv',
+    href: 'https://rogueprocess.tv',
+    desc: 'a documentary series about the moments technology slipped its leash. every system fails. usually it is a person.',
+    status: 'in production',
+  },
+  {
     name: 'landthebid.com',
     href: 'https://landthebid.com',
     desc: 'daily email alerts when new public sector contracts match your watchlist.',
