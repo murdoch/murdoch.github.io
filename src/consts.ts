@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     name: 'rogueprocess.tv',
     href: 'https://rogueprocess.tv',
     desc: 'a documentary series about the moments technology slipped its leash. every system fails. usually it is a person.',
-    status: 'in production',
+    status: 'coming soon',
   },
   {
     name: 'landthebid.com',
