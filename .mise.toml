@@ -1,0 +1,5 @@
+[tools]
+# Pinned so local builds match .github/workflows/deploy.yml. Without a pin this
+# repo followed the global `node = "latest"` and silently moved 25 -> 26 during
+# a `mise up`, diverging from CI. Bump both together.
+node = "26.7.0"

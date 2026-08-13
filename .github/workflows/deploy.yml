@@ -23,7 +23,8 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
-          node-version: 25
+          # Keep in sync with .mise.toml
+          node-version: 26.7.0
 
   deploy:
     needs: build
