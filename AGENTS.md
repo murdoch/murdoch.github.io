@@ -15,7 +15,7 @@ Static personal blog at `https://www.murdo.ch`, built with Astro and deployed to
 - `@astrojs/markdown-remark` to keep the unified markdown processor — see the gotcha below, this is load-bearing
 - `sharp` for image optimisation, on stable `^0.35.3`
 
-Both CI and local dev run Node 25. Astro 7's documented minimum is Node 22.12.
+Both CI and local dev run Node 26.7.0, pinned in `.mise.toml` and in `deploy.yml`'s `node-version`. Keep the two in step — without the `.mise.toml` pin this repo follows the global mise `node = "latest"` and drifts away from CI on the next `mise up`. Astro 7's documented minimum is Node 22.12.
 
 ## Commands
 
