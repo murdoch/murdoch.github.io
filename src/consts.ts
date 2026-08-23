@@ -23,10 +23,16 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'onehour.page',
+    href: 'https://onehour.page',
+    desc: '$99 buys the whole page for sixty minutes: one sentence, your name, your links. then it is gone.',
+    status: 'live',
+  },
+  {
     name: 'rogueprocess.tv',
     href: 'https://rogueprocess.tv',
     desc: 'a documentary series about the moments technology slipped its leash. every system fails. usually it is a person.',
-    status: 'coming soon',
+    status: 'live',
   },
   {
     name: 'landthebid.com',
