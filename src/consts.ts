@@ -23,9 +23,9 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'onehour.page',
-    href: 'https://onehour.page',
-    desc: '$99 buys the whole page for sixty minutes: one sentence, your name, your links. then it is gone.',
+    name: 'staycraft.co.uk',
+    href: 'https://staycraft.co.uk',
+    desc: 'direct-booking websites for independent holiday lets along the Clyde coast.',
     status: 'live',
   },
   {
@@ -44,12 +44,6 @@ export const PROJECTS: Project[] = [
     name: 'forcepull.com',
     href: 'https://forcepull.com',
     desc: 'a job board built around relevance, not volume. no upsells, no email walls, no horseshit.',
-    status: 'live',
-  },
-  {
-    name: 'moringa-bazinga.com',
-    href: 'https://moringa-bazinga.com',
-    desc: 'a small thing with a name I am refusing to apologise for.',
     status: 'live',
   },
 ];
