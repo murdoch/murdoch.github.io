@@ -35,12 +35,6 @@ export const PROJECTS: Project[] = [
     status: 'live',
   },
   {
-    name: 'landthebid.com',
-    href: 'https://landthebid.com',
-    desc: 'daily email alerts when new public sector contracts match your watchlist.',
-    status: 'live',
-  },
-  {
     name: 'forcepull.com',
     href: 'https://forcepull.com',
     desc: 'a job board built around relevance, not volume. no upsells, no email walls, no horseshit.',
