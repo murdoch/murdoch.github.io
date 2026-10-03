@@ -23,6 +23,12 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'digitalic.net',
+    href: 'https://digitalic.net',
+    desc: 'printable games on Etsy, with Woodland Friends and more children’s coloring books coming soon. thoughtful design, a playful spirit.',
+    status: 'live',
+  },
+  {
     name: 'staycraft.co.uk',
     href: 'https://staycraft.co.uk',
     desc: 'direct-booking websites for independent holiday lets along the Clyde coast.',
