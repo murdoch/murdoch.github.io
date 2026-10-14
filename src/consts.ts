@@ -23,6 +23,12 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'largsweb.com',
+    href: 'https://largsweb.com',
+    desc: 'websites for small businesses in Largs, Ayrshire and beyond. clear prices, sensible running costs, and one person from start to finish.',
+    status: 'live',
+  },
+  {
     name: 'digitalic.net',
     href: 'https://digitalic.net',
     desc: 'printable games on Etsy, with Woodland Friends and more children’s coloring books coming soon. thoughtful design, a playful spirit.',
